@@ -25,8 +25,6 @@ void setup() { // the word void means that this function won't return anything. 
     pinMode(motor4Pin, OUTPUT);
     pinMode(enable2Pin, OUTPUT);
 
-
-
     //This is the onboard LED that can be helpful for testing
     pinMode(13, OUTPUT);
     pinMode(13, HIGH);
@@ -36,7 +34,7 @@ void setup() { // the word void means that this function won't return anything. 
     // set enablePin high so that motor can turn on:
     analogWrite(enablePin, 255);
 
-
+    Serial.begin(9600);
 }
 
 void loop() { // This is the main loop that will get run. This is where you should put all your magical super awesome avoidance algorithms.
