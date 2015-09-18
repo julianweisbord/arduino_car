@@ -1,6 +1,6 @@
 
 #include <Servo.h> //includes the servo library so that you can easily use its functions
-
+#include "sensor.h"
 //Constants; This is where you should define anything you will use that won't change in your code
 // const int switchPin = 2;    // switch input
 const int motor1Pin = 5;    // H-bridge leg 1 (pin 2, 1A)
@@ -11,12 +11,11 @@ const int motor3Pin = 7;    // H-bridge leg 3
 const int motor4Pin = 8;    // H-bridge leg 4
 const int enable2Pin = 6;
 
-
 Servo sonicServo;  //Create the servo object. This names the servo sonicServo which you will later call in your code.
 
 void setup() { // the word void means that this function won't return anything. The setup function get's called in arduino, at the beginning to define all the pins you will be using.
-
     // set all the other pins you're using as outputs:
+    start();
     pinMode(motor1Pin, OUTPUT);
     pinMode(motor2Pin, OUTPUT);
     pinMode(enablePin, OUTPUT);
@@ -41,7 +40,7 @@ void loop() { // This is the main loop that will get run. This is where you shou
 
   driveMotor(2);
   driveMotor(1);
-  
+
   delay(500);
 }
 
@@ -58,6 +57,6 @@ void driveMotor(uint8_t motorSel){
     digitalWrite(motor3Pin, dir);  // set leg 1 of the H-bridge high
     digitalWrite(motor4Pin, 0);   // set leg 2 of the H-bridge low
     analogWrite(enable2Pin, 255);
-     
+
   }
 }
