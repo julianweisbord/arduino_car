@@ -2,7 +2,7 @@
 #define trigPin 12
 #define echoPin 11
 #define backUpLed 10 //reverse led pin
-#define led_pin 9 //forward pin
+#define led_pin 2 //forward pin
 
 void start(){
 pinMode(trigPin, OUTPUT);
@@ -14,6 +14,7 @@ Serial.begin(9600);
 }
 
 int ultra_sonic_pulse(){
+  // play with delay
   delay(300);
   long time, distance;
 

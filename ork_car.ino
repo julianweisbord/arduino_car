@@ -12,7 +12,6 @@ const int motor4Pin = 8;    // H-bridge leg 4
 const int enable2Pin = 6;
 int speed;
 
-
 Servo sonicServo;  //Create the servo object. This names the servo sonicServo which you will later call in your code.
 
 void setup() { // the word void means that this function won't return anything. The setup function get's called in arduino, at the beginning to define all the pins you will be using.
@@ -27,38 +26,43 @@ void setup() { // the word void means that this function won't return anything. 
     pinMode(enable2Pin, OUTPUT);
 
 
-
     //This is the onboard LED that can be helpful for testing
     pinMode(13, OUTPUT);
     pinMode(13, HIGH);
-
-
+    // add servo to rotate sensor
+    sonicServo.attach(9);
 
     // set enablePin high so that motor can turn on:
     analogWrite(enablePin, 255);
-    
+
 }
 
 void loop() { // This is the main loop that will get run. This is where you should put all your magical super awesome avoidance algorithms.
-  
+
+  for(int i = 0; i < 2400; i+=400){
+    delay(350);
+    sonicServo.writeMicroseconds(i);
+  }
   speed = ultra_sonic_pulse();
   if(speed !=0){
-    driveMotor(1);
+    driveMotor(1,0);
   }
   else{
-    driveMotor(0);
+    driveMotor(0,0);
+    delay(1000);
+    driveMotor(0,1);
   }
-  delay(500);
+
 }
 
-void driveMotor(int dir){
+void driveMotor(int dir, int oppDir){
   //Right Motor is 1, Left Motor is 2
   /* motorDir: forward 1, reverse 0 */
   digitalWrite(motor1Pin, dir);  // set leg 1 of the H-bridge high
-  digitalWrite(motor2Pin, 0);   // set leg 2 of the H-bridge low
+  digitalWrite(motor2Pin, oppDir);   // set leg 2 of the H-bridge low
   analogWrite(enablePin, 195);
 
   digitalWrite(motor3Pin, dir);  // set leg 1 of the H-bridge high
-  digitalWrite(motor4Pin, 0);   // set leg 2 of the H-bridge low
+  digitalWrite(motor4Pin, oppDir);   // set leg 2 of the H-bridge low
   analogWrite(enable2Pin, 195);
 }
