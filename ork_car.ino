@@ -56,9 +56,9 @@ void driveMotor(int dir){
   /* motorDir: forward 1, reverse 0 */
   digitalWrite(motor1Pin, dir);  // set leg 1 of the H-bridge high
   digitalWrite(motor2Pin, 0);   // set leg 2 of the H-bridge low
-  analogWrite(enablePin, 255);
+  analogWrite(enablePin, 195);
 
   digitalWrite(motor3Pin, dir);  // set leg 1 of the H-bridge high
   digitalWrite(motor4Pin, 0);   // set leg 2 of the H-bridge low
-  analogWrite(enable2Pin, 255);
+  analogWrite(enable2Pin, 195);
 }

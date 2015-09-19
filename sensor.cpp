@@ -8,7 +8,7 @@ void start(){
 pinMode(trigPin, OUTPUT);
 pinMode(echoPin, INPUT);
 pinMode(backUpLed, OUTPUT);
-  pinMode(led_pin, OUTPUT);
+pinMode(led_pin, OUTPUT);
 //start console communication
 Serial.begin(9600);
 }
@@ -34,7 +34,7 @@ int ultra_sonic_pulse(){
     Serial.println(distance);
     Serial.print(" cm\n");
     //turn red led on
-    if (distance < 8){
+    if (distance < 22){
       digitalWrite(led_pin, LOW);
       digitalWrite(backUpLed, HIGH);
       // Also stop car
@@ -42,6 +42,7 @@ int ultra_sonic_pulse(){
     }
     else{
       digitalWrite(backUpLed, LOW);
+      digitalWrite(led_pin, HIGH);
 
     }
   }
