@@ -15,7 +15,7 @@ Serial.begin(9600);
 
 int ultra_sonic_pulse(){
   // play with delay
-  delay(300);
+  // delay(300);
   long time, distance;
 
   digitalWrite(trigPin, LOW);

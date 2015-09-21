@@ -38,12 +38,13 @@ void setup() { // the word void means that this function won't return anything. 
 }
 
 void loop() { // This is the main loop that will get run. This is where you should put all your magical super awesome avoidance algorithms.
-
-  for(int i = 0; i < 2400; i+=400){
-    delay(350);
+  speed = ultra_sonic_pulse();
+  for(int i = 0; i < 2400; i+=500){
+    // call sensor
+    delay(200);
     sonicServo.writeMicroseconds(i);
   }
-  speed = ultra_sonic_pulse();
+
   if(speed !=0){
     driveMotor(1,0);
   }
