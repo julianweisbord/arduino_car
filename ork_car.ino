@@ -10,7 +10,7 @@ const int enablePin = 3;    // H-bridge enable pin
 const int motor3Pin = 7;    // H-bridge leg 3
 const int motor4Pin = 8;    // H-bridge leg 4
 const int enable2Pin = 6;
-int speed;
+int speed, rotation;
 
 Servo sonicServo;  //Create the servo object. This names the servo sonicServo which you will later call in your code.
 
@@ -39,11 +39,9 @@ void setup() { // the word void means that this function won't return anything. 
 
 void loop() { // This is the main loop that will get run. This is where you should put all your magical super awesome avoidance algorithms.
   speed = ultra_sonic_pulse();
-  for(int i = 0; i < 2400; i+=500){
+
     // call sensor
-    delay(200);
-    sonicServo.writeMicroseconds(i);
-  }
+  sonicServo.writeMicroseconds(rotation);
 
   if(speed !=0){
     driveMotor(1,0);
@@ -53,6 +51,11 @@ void loop() { // This is the main loop that will get run. This is where you shou
     delay(1000);
     driveMotor(0,1);
   }
+  rotation +=500;
+  if (rotation >1500){
+    rotation =0;
+  }
+  delay(100);
 
 }
 
